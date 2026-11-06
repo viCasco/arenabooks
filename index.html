@@ -137,7 +137,7 @@ const j=await getChannelsPage(t.id,1,signal);
 if(token!==state.token)return;
 state.nextChannels=j.meta?.next_page??(j.meta?.has_more_pages?2:null);
 state.channels=j.data.filter(x=>x.type==='Channel'&&x.visibility!=='private').map(x=>({id:x.id,title:x.title||x.slug||'Colección',slug:x.slug}));
-if(t.id==='chloe-abrasada'){const priority=state.channels.findIndex(c=>c.slug==='sexy-pdfs');if(priority>0)state.channels.unshift(state.channels.splice(priority,1)[0]);}
+if(t.id==='chloe-abrasada'){const priority=state.channels.findIndex(c=>c.slug==='sexy-pdfs'||String(c.id)==='1315316');if(priority>0)state.channels.unshift(state.channels.splice(priority,1)[0]);if(priority<0)state.channels.unshift({id:1315316,title:'sexy pdfs',slug:'sexy-pdfs'});}
 state.loaded=true;
 if(!state.channels.length){$('arenaStatus').textContent='Este perfil no devuelve colecciones públicas en la primera página.';render();return}
 await collectChannels(5,signal,token);

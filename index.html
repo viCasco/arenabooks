@@ -103,7 +103,7 @@ card.append(item('span','format',x.ext.toUpperCase()),item('h3','',x.title));
 if(x.owner)card.append(item('p','','Añadido por: '+x.owner));
 if(x.size)card.append(item('small','','Tamaño: '+(x.size/1048576).toFixed(2)+' MB'));
 const links=item('div','links');anchor(links,x.url,'Abrir '+x.ext.toUpperCase()+' ↗');anchor(links,'https://www.are.na/block/'+x.id,'Ficha Are.na ↗');card.append(links);
-const actions=item('div','card-actions');const download=item('a','mini-button','Descargar ↗');download.href=x.url;download.target='_blank';download.rel='noopener noreferrer';download.title='Abrir archivo original para descargar (la descarga depende del navegador)';actions.append(download);
+const actions=item('div','card-actions');
 const relatedButton=item('button','mini-button','Colecciones relacionadas');relatedButton.type='button';const panel=item('div','connection-panel');panel.hidden=true;relatedButton.onclick=()=>related(x.id,relatedButton,panel);actions.append(relatedButton);card.append(actions,panel);root.append(card);
 }
 if(!results.length)root.append(item('div','empty',st.loaded?'No se encontraron archivos con estos filtros en la página consultada. Prueba otra colección o cambia el criterio.':'Aquí aparecerán PDF y EPUB con enlace de archivo identificado.'));

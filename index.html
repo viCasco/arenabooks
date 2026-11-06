@@ -27,16 +27,16 @@ input:focus,select:focus{outline:2px solid #a8d6b7}button{font:inherit;font-weig
 <main class="wrap"><h1>Encuentra tu próxima historia.</h1><p class="lead">Busca libros de cualquier autor y temática, sin limitarte a una colección. Consulta fichas bibliográficas y, cuando el archivo esté identificado, accede a ediciones digitales disponibles.</p>
 <div class="source-tabs"><button type="button" id="tabArena" class="active" aria-pressed="true">Archivos de Are.na</button><button type="button" id="tabGutenberg" aria-pressed="false">Biblioteca Gutenberg</button></div>
 <section id="arenaView"><div class="panel">
-<p class="micro" style="max-width:850px;margin:0 0 18px">Explora archivos PDF y EPUB de una colección pública o de un perfil de Are.na. Pulsa «Añadido por» para ver otros documentos de ese usuario. Se consulta una página cada vez; no es una búsqueda global.</p>
+<p class="micro" style="max-width:850px;margin:0 0 18px">Las colecciones muestran todos sus archivos conectados, aunque los hayan añadido diferentes usuarios. Las URLs de perfil muestran únicamente los contenidos atribuidos a esa cuenta. Iniciamos en «Sexy PDFs» para que aparezcan sus libros desde el principio.</p>
 <div class="fields">
-<div class="wide"><label for="arenaChannel">Colección, usuario o URL de Are.na</label><input id="arenaChannel" value="https://www.are.na/chloe-abrasada" placeholder="URL de perfil, colección o identificador" list="arenaFavorites"><datalist id="arenaFavorites"><option value="https://www.are.na/chloe-abrasada/sexy-pdfs"><option value="1502933"><option value="2525100"><option value="4585826"></datalist></div>
+<div class="wide"><label for="arenaChannel">Colección o perfil de Are.na</label><input id="arenaChannel" value="https://www.are.na/chloe-abrasada/sexy-pdfs" placeholder="URL de perfil, colección o identificador" list="arenaFavorites"><datalist id="arenaFavorites"><option value="https://www.are.na/chloe-abrasada/sexy-pdfs"><option value="1502933"><option value="2525100"><option value="4585826"></datalist></div>
 <div><label for="arenaWords">Título o palabras clave (en esta página)</label><input id="arenaWords" placeholder="Ej.: Japón, Akutagawa"></div>
 <div><label for="arenaFormat">Formato</label><select id="arenaFormat"><option value="">PDF y EPUB</option><option value="pdf">PDF</option><option value="epub">EPUB</option></select></div>
 <div><label for="arenaSort">Orden</label><select id="arenaSort"><option value="position_desc">Orden del canal</option><option value="created_at_desc">Más recientes</option></select></div>
-</div><div class="actions"><span class="micro">Se muestran únicamente PDF y EPUB. El filtro de palabras actúa sobre la página consultada; «Añadido por» permite explorar el perfil público del usuario.</span><button id="arenaGo" type="button" class="primary">Explorar archivos</button></div>
+</div><div class="actions"><span class="micro">Se muestran PDF y EPUB de la colección indicada. «Añadido por» abre los documentos atribuidos al usuario, no todas las colecciones que posee.</span><button id="arenaGo" type="button" class="primary">Explorar archivos</button></div>
 </div>
 <div class="bar"><h2>Archivos de Are.na</h2><span class="counter" id="arenaCount">Sin consultar</span></div>
-<div class="status" id="arenaStatus" aria-live="polite">Cargando automáticamente los archivos públicos de Chloe…</div>
+<div class="status" id="arenaStatus" aria-live="polite">Cargando automáticamente la colección Sexy PDFs…</div>
 <div class="results" id="arenaResults"><div class="empty">Aquí aparecerán PDF y EPUB con enlace de archivo identificado.</div></div>
 <div class="paging" id="arenaPaging"><button type="button" id="arenaPrev">← Anterior</button><span id="arenaPage" class="page-label"></span><button type="button" id="arenaNext">Siguiente →</button></div>
 </section>

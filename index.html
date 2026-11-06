@@ -17,10 +17,25 @@ input:focus,select:focus{outline:2px solid #a8d6b7}button{font:inherit;font-weig
 .paging{display:none;justify-content:center;align-items:center;gap:13px;margin-top:23px}.paging.visible{display:flex}.page-label{color:#65776b;font-size:13px}footer{border-top:1px solid #dce7de;padding:24px 0;color:#738476;font-size:12px}
 @media(max-width:820px){.fields,.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.fields,.results{grid-template-columns:1fr}.wide{grid-column:auto}.panel{padding:19px}.actions>div{display:flex;width:100%;gap:8px}.actions button{flex:1}main{padding-top:28px}}
-</style></head><body>
+.source-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}.source-tabs button.active{color:white;background:#216b48;border-color:#216b48}[hidden]{display:none!important}.status{font-size:13px;color:#617567;min-height:27px}.book small{font-size:12px;color:#758577}</style></head><body>
 <header><div class="wrap head"><div class="brand">arena<span>books.</span></div><a href="https://www.are.na/" target="_blank" rel="noopener noreferrer">Are.na ↗</a></div></header>
 <main class="wrap"><h1>Encuentra tu próxima historia.</h1><p class="lead">Busca libros de cualquier autor y temática, sin limitarte a una colección. Consulta fichas bibliográficas y, cuando el archivo esté identificado, accede a ediciones digitales disponibles.</p>
-<section class="panel">
+<div class="source-tabs"><button type="button" id="tabArena" class="active" aria-pressed="true">Archivos de Are.na</button><button type="button" id="tabGutenberg" aria-pressed="false">Biblioteca Gutenberg</button></div>
+<section id="arenaView"><div class="panel">
+<p class="micro" style="max-width:850px;margin:0 0 18px">Explora archivos PDF y EPUB de colecciones públicas de Are.na mediante su API oficial. No es una búsqueda global: solo se consulta la colección que indiques, una página por vez. Los archivos se enlazan desde su origen.</p>
+<div class="fields">
+<div class="wide"><label for="arenaChannel">Colección pública o URL de Are.na</label><input id="arenaChannel" value="https://www.are.na/chloe-abrasada/sexy-pdfs" placeholder="URL o ID de colección" list="arenaFavorites"><datalist id="arenaFavorites"><option value="https://www.are.na/chloe-abrasada/sexy-pdfs"><option value="1502933"><option value="2525100"><option value="4585826"></datalist></div>
+<div><label for="arenaWords">Título o palabras clave (en esta página)</label><input id="arenaWords" placeholder="Ej.: Japón, Akutagawa"></div>
+<div><label for="arenaFormat">Formato</label><select id="arenaFormat"><option value="">PDF y EPUB</option><option value="pdf">PDF</option><option value="epub">EPUB</option></select></div>
+<div><label for="arenaSort">Orden</label><select id="arenaSort"><option value="position_desc">Orden del canal</option><option value="created_at_desc">Más recientes</option></select></div>
+</div><div class="actions"><span class="micro">El filtro de palabras se aplica solamente a los elementos que devuelve la página consultada. El autor, género e idioma no suelen estar identificados en los archivos de Are.na.</span><button id="arenaGo" type="button" class="primary">Explorar archivos</button></div>
+</div>
+<div class="bar"><h2>Archivos de Are.na</h2><span class="counter" id="arenaCount">Sin consultar</span></div>
+<div class="status" id="arenaStatus" aria-live="polite">Selecciona una colección pública para consultar sus archivos.</div>
+<div class="results" id="arenaResults"><div class="empty">Aquí aparecerán PDF y EPUB con enlace de archivo identificado.</div></div>
+<div class="paging" id="arenaPaging"><button type="button" id="arenaPrev">← Anterior</button><span id="arenaPage" class="page-label"></span><button type="button" id="arenaNext">Siguiente →</button></div>
+</section>
+<div id="gutenbergView" hidden><section class="panel">
 <form id="form" class="fields">
 <div class="wide"><label for="words">Palabras clave o título</label><input id="words" type="search" placeholder="Ej.: Rashōmon, samuráis, wabi-sabi..." autocomplete="off"></div>
 <div><label for="author">Autor</label><input id="author" placeholder="Ej.: Ryūnosuke Akutagawa"></div>
@@ -35,7 +50,7 @@ input:focus,select:focus{outline:2px solid #a8d6b7}button{font:inherit;font-weig
 <div id="status" role="status" aria-live="polite">Introduce un título, autor o tema y pulsa «Buscar libros».</div>
 <section class="results" id="results"><div class="empty">Aquí aparecerán los libros encontrados.</div></section>
 <nav id="paging" class="paging" aria-label="Páginas de resultados"><button id="prev" type="button">← Anterior</button><span id="page-label" class="page-label"></span><button id="next" type="button">Siguiente →</button></nav>
-</main><footer><div class="wrap">ArenaBooks · Buscador independiente · Libros descargables: Project Gutenberg (Gutendex) · Are.na es una plataforma externa.</div></footer>
+</div></main><footer><div class="wrap">ArenaBooks · Buscador independiente · Libros descargables: Project Gutenberg (Gutendex) · Are.na es una plataforma externa.</div></footer>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);let page=1,hasNext=false,prev=false,busy=false,lastQuery='',request=0;
@@ -51,5 +66,24 @@ async function run(n=1){if(busy)return;const f=filters();if(!f.q&&!f.topic&&!f.l
 $('form').onsubmit=e=>{e.preventDefault();run(1)};$('submit').onclick=()=>run(1);$('prev').onclick=()=>run(page-1);$('next').onclick=()=>run(page+1);
 $('reset').onclick=()=>{$('form').reset();page=1;hasNext=false;prev=false;lastQuery='';$('counter').textContent='Sin buscar';$('status').textContent='Introduce un título, autor, género o idioma y pulsa «Buscar libros».';$('results').replaceChildren(node('div','empty','Aquí aparecerán libros con descarga identificada.'));pages();arena()};
 for(const id of ['words','author'])$(id).addEventListener('input',arena);arena();
+})();
+</script><script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const st={page:1,next:false,prev:false,loaded:false,rows:[],busy:false};
+function item(tag,cls,value){const e=document.createElement(tag);if(cls)e.className=cls;if(value!==undefined)e.textContent=value;return e}
+function safeUrl(u){return typeof u==='string'&&/^https:\/\//i.test(u)?u:null}
+function anchor(into,u,name){const good=safeUrl(u);if(!good)return;const a=item('a','',name);a.href=good;a.target='_blank';a.rel='noopener noreferrer';into.append(a)}
+function channelId(){const input=$('arenaChannel').value.trim();if(/^\d+$/.test(input))return input;try{const url=new URL(input);if(!/(^|\.)are\.na$/.test(url.hostname))return null;const p=url.pathname.split('/').filter(Boolean);return p.length>=2?p[p.length-1]:null}catch{return /^[a-zA-Z0-9_-]+$/.test(input)?input:null}}
+function fileFrom(x){if(x?.type!=='Attachment')return null;const a=x.attachment||{};const ext=String(a.file_extension||a.filename?.split('.').pop()||'').toLowerCase().replace('.','');if(!['pdf','epub'].includes(ext))return null;const url=safeUrl(a.url);if(!url)return null;return {id:x.id,title:x.title||a.filename||'Archivo sin título',ext,url,description:x.description?.plain||'',size:a.file_size||0,owner:x.user?.name||''}}
+function show(){const root=$('arenaResults');root.replaceChildren();const text=$('arenaWords').value.toLocaleLowerCase().trim(),ext=$('arenaFormat').value;let results=st.rows.filter(x=>(!ext||x.ext===ext)&&(!text||(x.title+' '+x.description+' '+x.owner).toLocaleLowerCase().includes(text)));$('arenaCount').textContent=results.length+' archivos visibles';for(const x of results){const card=item('article','book'),links=item('div','links');card.append(item('span','format',x.ext.toUpperCase()),item('h3','',x.title));if(x.owner)card.append(item('p','','Añadido por: '+x.owner));if(x.size)card.append(item('small','','Tamaño: '+(x.size/1048576).toFixed(2)+' MB'));anchor(links,x.url,'Abrir archivo ↗');anchor(links,'https://www.are.na/block/'+x.id,'Ver en Are.na ↗');card.append(links);root.append(card)}if(!results.length)root.append(item('div','empty',st.loaded?'No se encontraron archivos con estos filtros en la página consultada. Prueba otra colección o cambia el criterio.':'Aquí aparecerán PDF y EPUB con enlace de archivo identificado.'));const pages=st.loaded&&results.length>0&&(st.page>1||st.next);$('arenaPaging').classList.toggle('visible',pages);$('arenaPage').textContent='Página '+st.page;$('arenaPrev').disabled=st.busy||!st.prev;$('arenaNext').disabled=st.busy||!st.next}
+async function run(p=1){if(st.busy)return;const channel=channelId();if(!channel){$('arenaStatus').textContent='Introduce una URL o identificador válido de una colección de Are.na.';return}st.busy=true;$('arenaGo').disabled=true;$('arenaStatus').textContent='Consultando la colección pública…';try{const u='https://api.are.na/v3/channels/'+encodeURIComponent(channel)+'/contents?page='+p+'&per=24&sort='+encodeURIComponent($('arenaSort').value);const res=await fetch(u,{headers:{Accept:'application/json'}});if(!res.ok)throw Error('HTTP '+res.status);const json=await res.json();if(!Array.isArray(json.data))throw Error('respuesta inesperada');st.rows=json.data.map(fileFrom).filter(Boolean);st.page=p;st.next=!!json.meta?.has_more_pages;st.prev=p>1;st.loaded=true;$('arenaStatus').textContent='Página '+p+' · '+json.data.length+' elementos de Are.na consultados · '+st.rows.length+' archivos PDF/EPUB identificados. No se han recorrido otras páginas.';show()}catch(e){st.rows=[];st.loaded=false;st.next=false;st.prev=false;$('arenaStatus').textContent='No se pudo consultar Are.na ('+e.message+'). Comprueba que la colección sea pública y que la API permita el acceso desde este navegador.';show()}finally{st.busy=false;$('arenaGo').disabled=false;show()}}
+function switchTab(arena){$('arenaView').hidden=!arena;$('gutenbergView').hidden=arena;$('tabArena').classList.toggle('active',arena);$('tabGutenberg').classList.toggle('active',!arena);$('tabArena').setAttribute('aria-pressed',arena);$('tabGutenberg').setAttribute('aria-pressed',!arena)}
+$('tabArena').onclick=()=>switchTab(true);$('tabGutenberg').onclick=()=>switchTab(false);
+$('arenaGo').onclick=()=>run(1);$('arenaNext').onclick=()=>run(st.page+1);$('arenaPrev').onclick=()=>run(st.page-1);
+for(const id of ['arenaWords','arenaFormat'])$(id).addEventListener('input',show);
+$('arenaChannel').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run(1)}});
+show();
 })();
 </script></body></html>

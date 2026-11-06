@@ -1,124 +1,71 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ArenaBooks · Explora libros en Are.na</title>
-<meta name="description" content="Explora colecciones de Are.na con filtros de texto, autor, género, idioma, formato y colección.">
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5f8f5">
+<title>ArenaBooks · Busca libros</title><meta name="description" content="Buscador global de libros con filtros por autor, género, idioma y disponibilidad digital.">
 <style>
-:root{font-family:Inter,system-ui,-apple-system,sans-serif;color:#182821;background:#f5f8f5}
-*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #dce6de}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-.top{min-height:75px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-size:27px;font-weight:850;letter-spacing:-1.4px}.brand b{color:#38865d}
-a{color:#267049;text-decoration:none}a:hover{text-decoration:underline}
-main{padding-top:44px;padding-bottom:70px}h1{font-size:clamp(33px,5vw,52px);letter-spacing:-1.8px;margin:0 0 10px}
-.lead{max-width:790px;line-height:1.65;color:#617366;margin:0 0 26px}
-.panel,.book{background:#fff;border:1px solid #dce7de;border-radius:17px;box-shadow:0 8px 26px #24482c08}
-.panel{padding:24px}.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.wide{grid-column:span 2}label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
-input,select{width:100%;font:inherit;font-size:14px;border-radius:10px;border:1px solid #d2ded5;padding:12px;background:#fff;color:#192820}
-input:focus,select:focus{outline:2px solid #a6d8b5}
-.actions{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:20px}
-button{font:inherit;font-size:14px;font-weight:700;border:1px solid #c9dacc;border-radius:10px;padding:12px 17px;background:#fff;cursor:pointer}
-button.primary{background:#246b4a;color:#fff;border-color:#246b4a}button:disabled{opacity:.45;cursor:default}
-.note{font-size:12px;color:#687c6e;max-width:510px}.heading{display:flex;align-items:center;justify-content:space-between;margin:29px 0 10px}
-h2{font-size:22px;margin:0}.count{background:#e5f0e9;color:#376448;border-radius:30px;padding:7px 11px;font-size:12px}
-.status{font-size:13px;color:#687c6f;min-height:30px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.book{padding:19px;display:flex;flex-direction:column;gap:11px;min-width:0}
-.book h3{font-size:17px;line-height:1.4;margin:0;overflow-wrap:anywhere}
-.book p{font-size:13px;line-height:1.5;color:#68786e;margin:0;overflow-wrap:anywhere}
-.tag{font-size:11px;text-transform:uppercase;font-weight:800;color:#34754e;background:#e9f2eb;border-radius:20px;padding:5px 10px;align-self:flex-start}
-.links{margin-top:auto;display:flex;gap:12px;flex-wrap:wrap;font-size:13px;font-weight:700}
-.empty{grid-column:1/-1;text-align:center;padding:42px;border:1px dashed #cddbd0;border-radius:15px;background:white;color:#617568}
-.pages{display:flex;justify-content:center;gap:14px;margin-top:20px}footer{border-top:1px solid #dce6de;padding:26px 0;color:#728176;font-size:12px}
-@media(max-width:830px){.filters,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.filters,.grid{grid-template-columns:1fr}.wide{grid-column:span 1}.panel{padding:18px}}
-</style>
-</head>
-<body>
-<header><div class="wrap top"><div class="brand">arena<b>books.</b></div><a href="https://www.are.na/" target="_blank" rel="noopener noreferrer">Are.na ↗</a></div></header>
-<main class="wrap">
-<h1>Encuentra tu próxima historia.</h1>
-<p class="lead">Explora colecciones públicas de Are.na. Filtra los elementos recuperados por palabras clave, autor, género, idioma y formato. Los metadatos ausentes se indican como desconocidos, sin inventarlos.</p>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;color:#192c23;background:#f5f8f5}*{box-sizing:border-box}body{margin:0}
+header{background:#fff;border-bottom:1px solid #dde8df}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.head{height:79px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;letter-spacing:-1.5px;font-size:29px}.brand span{color:#328659}
+a{color:#216b47;text-decoration:none}a:hover{text-decoration:underline}
+main{padding:42px 0 75px}h1{font-size:clamp(32px,5vw,51px);line-height:1.15;letter-spacing:-1.8px;margin:0 0 11px}p{color:#627668;line-height:1.6}.lead{max-width:820px;margin:0 0 28px}
+.panel,.book{background:#fff;border:1px solid #dae7dd;border-radius:18px;box-shadow:0 10px 35px #1a352507}.panel{padding:26px}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.wide{grid-column:span 2}label{display:block;font-size:13px;font-weight:750;margin-bottom:8px}
+input,select{width:100%;font:inherit;font-size:15px;padding:12px 14px;border-radius:11px;border:1px solid #d4e1d7;color:#1b2a21;background:#fff;min-width:0}
+input:focus,select:focus{outline:2px solid #a8d6b7}button{font:inherit;font-weight:720;border:1px solid #cbdccf;background:#fff;border-radius:11px;padding:12px 19px;cursor:pointer}button.primary{background:#216b48;border-color:#216b48;color:#fff}button:disabled{opacity:.45;cursor:default}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px}.micro{font-size:12px;line-height:1.5;color:#6a7c6f;max-width:580px}
+.source{margin:16px 0 0;padding:12px 15px;background:#ecf4ed;border-radius:11px;color:#476a50;font-size:13px;line-height:1.5}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:30px 0 10px}h2{margin:0;font-size:22px}.counter{border-radius:30px;padding:7px 12px;font-size:12px;color:#3b654c;background:#e5f0e7}
+#status{font-size:13px;color:#617567;min-height:27px}.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.book{padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}.book h3{font-size:17px;line-height:1.38;margin:0;overflow-wrap:anywhere}.book p{font-size:13px;margin:0}.book .format{align-self:flex-start;background:#e9f2eb;color:#32724e;border-radius:50px;font-size:11px;font-weight:850;padding:5px 10px}.book .links{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px;font-weight:750;font-size:13px}.empty{grid-column:1/-1;text-align:center;padding:43px 25px;border:1px dashed #cbdacc;border-radius:16px;background:#fff;color:#6a7b6e}
+.paging{display:none;justify-content:center;align-items:center;gap:13px;margin-top:23px}.paging.visible{display:flex}.page-label{color:#65776b;font-size:13px}footer{border-top:1px solid #dce7de;padding:24px 0;color:#738476;font-size:12px}
+@media(max-width:820px){.fields,.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.fields,.results{grid-template-columns:1fr}.wide{grid-column:auto}.panel{padding:19px}.actions>div{display:flex;width:100%;gap:8px}.actions button{flex:1}main{padding-top:28px}}
+</style></head><body>
+<header><div class="wrap head"><div class="brand">arena<span>books.</span></div><a href="https://www.are.na/" target="_blank" rel="noopener noreferrer">Are.na ↗</a></div></header>
+<main class="wrap"><h1>Encuentra tu próxima historia.</h1><p class="lead">Busca libros de cualquier autor y temática, sin limitarte a una colección. Consulta fichas bibliográficas y, cuando el archivo esté identificado, accede a ediciones digitales disponibles.</p>
 <section class="panel">
-<form id="filters" class="filters">
-<div class="wide"><label for="query">Palabras clave o título</label><input id="query" type="search" placeholder="Ej.: Japón, Akutagawa, Rashōmon"></div>
-<div><label for="author">Autor</label><input id="author" placeholder="Autor del libro"></div>
-<div><label for="genre">Género</label><select id="genre"><option value="">Todos</option><option>Novela</option><option>Relatos</option><option>Filosofía</option><option>Poesía</option><option>Terror</option><option>Ensayo</option><option>Mitología</option></select></div>
-<div><label for="lang">Idioma</label><select id="lang"><option value="">Todos</option><option value="es">Español</option><option value="en">Inglés</option><option value="ja">Japonés</option></select></div>
-<div><label for="format">Formato</label><select id="format"><option value="">Todos</option><option value="pdf">PDF</option><option value="epub">EPUB</option><option value="link">Enlace</option></select></div>
-<div class="wide"><label for="channel">Colección</label><select id="channel"><option value="1502933">text — Danny O'Shaughnessy</option><option value="2525100">Secrets — Danny O'Shaughnessy</option><option value="4585826">fiction — L ⵣ</option></select></div>
-<div><label for="sort">Ordenar por</label><select id="sort"><option value="default">Orden original</option><option value="az">Título A–Z</option><option value="za">Título Z–A</option></select></div>
+<form id="form" class="fields">
+<div class="wide"><label for="words">Palabras clave o título</label><input id="words" type="search" placeholder="Ej.: Rashōmon, samuráis, wabi-sabi..." autocomplete="off"></div>
+<div><label for="author">Autor</label><input id="author" placeholder="Ej.: Ryūnosuke Akutagawa"></div>
+<div><label for="genre">Género</label><select id="genre"><option value="">Todos los géneros</option><option value="fiction">Novela / ficción</option><option value="short stories">Relatos</option><option value="philosophy">Filosofía</option><option value="poetry">Poesía</option><option value="horror">Terror</option><option value="essays">Ensayo</option><option value="mythology">Mitología</option></select></div>
+<div><label for="lang">Idioma</label><select id="lang"><option value="">Todos los idiomas</option><option value="es">Español</option><option value="en">Inglés</option><option value="ja">Japonés</option><option value="fr">Francés</option><option value="de">Alemán</option></select></div>
+<div><label for="format">Formato</label><select id="format"><option value="">Cualquier formato</option><option value="pdf">PDF descargable</option><option value="epub">EPUB descargable</option></select></div>
 </form>
-<div class="actions"><span class="note">Primera versión: los filtros se aplican a la página de la colección consultada, no a toda Are.na.</span><div><button id="reset" type="button">Limpiar</button> <button id="search" class="primary" type="button">Explorar colección</button></div></div>
+<div class="actions"><span class="micro">La búsqueda es global. Los libros proceden de Open Library; al seleccionar PDF o EPUB, se consulta el catálogo de Project Gutenberg mediante Gutendex, que es más limitado.</span><div><button id="reset" type="button">Limpiar</button> <button id="submit" class="primary" type="button">Buscar libros</button></div></div>
+<div class="source">¿Quieres buscar específicamente en Are.na? <a id="arena" href="https://www.are.na/search" target="_blank" rel="noopener noreferrer">Abrir búsqueda global de Are.na ↗</a> · La API de búsqueda global de Are.na requiere Premium y autenticación. Esta web no afirma que los resultados bibliográficos estén alojados allí.</div>
 </section>
-<div class="heading"><h2>Resultados</h2><span class="count" id="count">0 elementos</span></div>
-<div class="status" id="status" role="status" aria-live="polite">Elige una colección y pulsa «Explorar colección».</div>
-<div class="grid" id="results"><div class="empty">Aquí aparecerán los resultados de la consulta.</div></div>
-<div class="pages"><button id="prev" disabled>← Anterior</button><button id="next" disabled>Siguiente →</button></div>
-</main>
-<footer><div class="wrap">ArenaBooks · Proyecto independiente no afiliado a Are.na. Respeta los derechos de autor de cada publicación.</div></footer>
+<div class="bar"><h2>Resultados</h2><span id="counter" class="counter">Sin buscar</span></div>
+<div id="status" role="status" aria-live="polite">Introduce un título, autor o tema y pulsa «Buscar libros».</div>
+<section class="results" id="results"><div class="empty">Aquí aparecerán los libros encontrados.</div></section>
+<nav id="paging" class="paging" aria-label="Páginas de resultados"><button id="prev" type="button">← Anterior</button><span id="page-label" class="page-label"></span><button id="next" type="button">Siguiente →</button></nav>
+</main><footer><div class="wrap">ArenaBooks · Buscador independiente. Datos bibliográficos: Open Library. Ediciones descargables: Project Gutenberg (Gutendex). Are.na es una plataforma externa.</div></footer>
 <script>
 (()=>{
-"use strict";
-const $=id=>document.getElementById(id);
-let page=1,items=[],busy=false,hasNext=false;
-function plain(v){if(typeof v!=="string")return "";const d=document.createElement("div");d.innerHTML=v;return d.textContent||""}
-function normalize(raw){
-const x=raw.block||raw.item||raw,meta=x.metadata||{},file=x.attachment||x.file||{},source=x.source||{};
-const url=file.url||file.original?.url||source.url||"";
-const filename=file.filename||x.filename||"";
-const extension=String(x.extension||file.extension||filename.split(".").pop()||((url.match(/\.([a-z0-9]+)(?:[?#]|$)/i)||[])[1])||"").toLowerCase();
-const format=["pdf","epub"].includes(extension)?extension:(String(x.class||x.type).toLowerCase()==="link"||source.url?"link":"other");
-return {id:x.id,title:plain(x.title||x.name||filename||source.title||"Sin título"),description:plain(x.description||x.content||x.text||"").slice(0,250),author:plain(x.author||meta.author||""),genre:plain(x.genre||meta.genre||""),lang:plain(x.language||meta.language||""),format,url,areNa:x.id?"https://www.are.na/block/"+encodeURIComponent(x.id):""}
-}
-function matches(x){
-const q=$("query").value.trim().toLocaleLowerCase(),a=$("author").value.trim().toLocaleLowerCase(),g=$("genre").value.toLocaleLowerCase(),l=$("lang").value.toLocaleLowerCase(),f=$("format").value;
-return (!q||(x.title+" "+x.description+" "+x.author).toLocaleLowerCase().includes(q))&&(!a||x.author.toLocaleLowerCase().includes(a))&&(!g||x.genre.toLocaleLowerCase()===g)&&(!l||x.lang.toLocaleLowerCase()===l)&&(!f||x.format===f)
-}
-function link(href,label){if(!/^https:\/\//i.test(href))return null;const a=document.createElement("a");a.href=href;a.textContent=label;a.target="_blank";a.rel="noopener noreferrer";return a}
-function render(){
-let found=items.filter(matches);const sort=$("sort").value;
-if(sort==="az")found.sort((a,b)=>a.title.localeCompare(b.title,"es"));
-if(sort==="za")found.sort((a,b)=>b.title.localeCompare(a.title,"es"));
-$("count").textContent=found.length+" de "+items.length+" visibles";
-const root=$("results");root.replaceChildren();
-if(!found.length){const e=document.createElement("div");e.className="empty";e.textContent="No hay coincidencias en esta página. Cambia los filtros o consulta otra página.";root.append(e);return}
-for(const x of found){
-const card=document.createElement("article");card.className="book";
-const tag=document.createElement("span");tag.className="tag";tag.textContent=x.format==="other"?"Archivo/nota":x.format;
-const title=document.createElement("h3");title.textContent=x.title;
-const author=document.createElement("p");author.textContent=x.author?"Autor: "+x.author:"Autor sin identificar";
-const desc=document.createElement("p");desc.textContent=x.description||"Sin descripción";
-const links=document.createElement("div");links.className="links";
-for(const el of [link(x.areNa,"Ver en Are.na ↗"),link(x.url,"Archivo original ↗")])if(el)links.append(el);
-card.append(tag,title,author,desc,links);root.append(card)
-}
-}
-async function load(n){
-if(busy)return;busy=true;$("search").disabled=$("next").disabled=$("prev").disabled=true;
-$("status").textContent="Consultando Are.na…";
-try{
-const url="https://api.are.na/v3/channels/"+encodeURIComponent($("channel").value)+"/contents?page="+n+"&per=24";
-const response=await fetch(url,{headers:{Accept:"application/json"}});
-if(!response.ok)throw Error("HTTP "+response.status);
-const body=await response.json();
-const rows=Array.isArray(body.data)?body.data:Array.isArray(body.contents)?body.contents:Array.isArray(body)?body:[];
-items=rows.map(normalize);page=n;
-hasNext=body.meta?.has_more_pages??(Boolean(body.meta?.next_page)||rows.length===24);
-$("status").textContent="Página "+n+" · "+rows.length+" elementos recibidos. Los filtros se aplican a los elementos visibles.";
-render()
-}catch(err){
-items=[];hasNext=false;$("count").textContent="0 elementos";
-$("results").replaceChildren();
-const e=document.createElement("div");e.className="empty";e.textContent="No se pudo consultar la API ("+err.message+"). Puede tratarse de acceso restringido, límite de peticiones o CORS. No se muestran resultados ficticios.";$("results").append(e);
-$("status").textContent="Error de consulta."
-}finally{busy=false;$("search").disabled=false;$("prev").disabled=page<=1;$("next").disabled=!hasNext}
-}
-$("search").onclick=()=>load(1);$("prev").onclick=()=>load(page-1);$("next").onclick=()=>load(page+1);
-$("channel").onchange=()=>{page=1;items=[];hasNext=false;render();$("prev").disabled=$("next").disabled=true;$("status").textContent="Colección cambiada. Pulsa «Explorar colección»."};
-for(const id of ["query","author","genre","lang","format","sort"])$(id).addEventListener("input",render);
-$("filters").onsubmit=e=>{e.preventDefault();load(1)};
-$("reset").onclick=()=>{$("filters").reset();render()};
+'use strict';
+const $=id=>document.getElementById(id),per=24;
+let state={page:1,totalPages:1,next:null,prev:null,query:null,busy:false,requestId:0};
+const languageOL={es:'spa',en:'eng',ja:'jpn',fr:'fre',de:'ger'};
+const mapFormats={'application/pdf':'pdf','application/epub+zip':'epub'};
+function urlForAreNa(){const q=[$('words').value.trim(),$('author').value.trim()].filter(Boolean).join(' ');$('arena').href='https://www.are.na/search'+(q?'?q='+encodeURIComponent(q):'')}
+function make(tag,cls,value){let el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el}
+function addLink(container,url,label){if(!url||!/^https:\/\//i.test(url))return;let a=make('a','',label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';container.append(a)}
+function draw(items){let root=$('results');root.replaceChildren();if(!items.length){root.append(make('div','empty','No hay resultados para estos criterios. Prueba otra búsqueda o elimina algún filtro.'));return}
+for(let x of items){const card=make('article','book'),tag=make('span','format',x.format||'FICHA'),title=make('h3','',x.title||'Sin título'),auth=make('p','',x.author?'Autor: '+x.author:'Autor no identificado'),details=make('p','',x.year?'Primera publicación: '+x.year:''),links=make('div','links');card.append(tag,title,auth);if(x.year)card.append(details);addLink(links,x.info,'Ver ficha ↗');addLink(links,x.download,'Abrir '+x.format+' ↗');card.append(links);root.append(card)}}
+function pagination(){const visible=state.totalPages>1&&state.query!==null;$('paging').classList.toggle('visible',visible);if(!visible)return;$('page-label').textContent='Página '+state.page+' de '+state.totalPages;$('prev').disabled=state.page<=1||state.busy;$('next').disabled=state.page>=state.totalPages||state.busy}
+function params(){return {words:$('words').value.trim(),author:$('author').value.trim(),genre:$('genre').value,lang:$('lang').value,format:$('format').value}}
+function endpoint(f,page){if(f.format){const u=new URL('https://gutendex.com/books/');const query=[f.words,f.author].filter(Boolean).join(' ');if(query)u.searchParams.set('search',query);if(f.lang)u.searchParams.set('languages',f.lang);if(f.genre)u.searchParams.set('topic',f.genre);u.searchParams.set('page',String(page));return u.toString()}
+const q=[f.words,f.author?'author:'+JSON.stringify(f.author):'',f.genre?'subject:'+JSON.stringify(f.genre):'',f.lang?'language:'+languageOL[f.lang]:''].filter(Boolean).join(' ');
+const u=new URL('https://openlibrary.org/search.json');u.searchParams.set('q',q);u.searchParams.set('fields','key,title,author_name,first_publish_year,language');u.searchParams.set('limit',String(per));u.searchParams.set('page',String(page));return u.toString()}
+async function search(page=1,reuse=false){if(state.busy)return;let f=reuse?state.query:params();urlForAreNa();if(!f.words&&!f.author&&!f.genre&&!f.lang){$('status').textContent='Introduce al menos una palabra clave, autor, género o idioma para buscar.';return}
+state.busy=true;let id=++state.requestId;$('submit').disabled=true;$('status').textContent='Consultando '+(f.format?'Project Gutenberg':'Open Library')+'…';pagination();
+try{let r=await fetch(endpoint(f,page),{headers:{Accept:'application/json'}});if(!r.ok)throw Error('HTTP '+r.status);let d=await r.json(),items=[],count=0;
+if(f.format){count=Number(d.count||0);items=(d.results||[]).map(x=>{let options=Object.entries(x.formats||{});const selected=options.find(([mime,link])=>mapFormats[mime]===f.format&&/^https:\/\//.test(link));if(!selected)return null;return {title:x.title,author:(x.authors||[]).map(a=>a.name).join(', '),info:'https://www.gutenberg.org/ebooks/'+x.id,download:selected[1],format:f.format.toUpperCase()}}).filter(Boolean)}
+else{count=Number(d.numFound??d.num_found??0);items=(d.docs||[]).map(x=>({title:x.title,author:(x.author_name||[]).slice(0,3).join(', '),year:x.first_publish_year,info:x.key?'https://openlibrary.org'+x.key:'',format:'FICHA'}))}
+if(id!==state.requestId)return;state.query=f;state.page=page;state.totalPages=Math.max(1,Math.ceil(count/(f.format?32:per)));state.totalPages=Math.min(state.totalPages,500);
+draw(items);$('counter').textContent=count.toLocaleString('es-ES')+' registros';$('status').textContent=(f.format?'Project Gutenberg':'Open Library')+' · '+items.length+' resultados mostrados en esta página.'+(f.format&&count>0&&items.length===0?' No se han identificado archivos '+f.format.toUpperCase()+' en esta página.':'');}
+catch(e){state.query=null;state.totalPages=1;$('counter').textContent='Error';draw([]);$('status').textContent='No se pudo completar la consulta: '+e.message+'. Comprueba la conexión e inténtalo de nuevo.'}
+finally{state.busy=false;$('submit').disabled=false;pagination()}}
+$('form').addEventListener('submit',e=>{e.preventDefault();search()});$('submit').onclick=()=>search();
+$('prev').onclick=()=>search(state.page-1,true);$('next').onclick=()=>search(state.page+1,true);
+$('reset').onclick=()=>{$('form').reset();state={page:1,totalPages:1,next:null,prev:null,query:null,busy:false,requestId:state.requestId+1};$('counter').textContent='Sin buscar';$('status').textContent='Introduce un título, autor o tema y pulsa «Buscar libros».';$('results').replaceChildren(make('div','empty','Aquí aparecerán los libros encontrados.'));pagination();urlForAreNa()};
+for(let name of ['words','author'])$(name).addEventListener('input',urlForAreNa);
+urlForAreNa();
 })();
 </script></body></html>
